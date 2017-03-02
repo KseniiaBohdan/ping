@@ -23,7 +23,6 @@ public class HttpURLConnectionExample {
 
        // System.out.println("Testing 1 - Send Http GET request");
        // http.sendGet();
-
         System.out.println("\nTesting 2 - Send Http POST request");
         http.sendPost();
 
@@ -65,7 +64,7 @@ public class HttpURLConnectionExample {
     // HTTP POST request
     private void sendPost() throws Exception {
 
-        String url = "http://booking.uz.gov.ua/ru/";
+        String url = "http://booking.uz.gov.ua/en/";
 
         HttpClient client = new DefaultHttpClient();
         HttpPost post = new HttpPost(url);
@@ -81,14 +80,16 @@ public class HttpURLConnectionExample {
         urlParameters.add(new BasicNameValuePair("num", "12345"));
         urlParameters.add(new BasicNameValuePair("station_id_from", "2204001"));
         urlParameters.add(new BasicNameValuePair("station_id_till", "2204001"));
-        urlParameters.add(new BasicNameValuePair("station_from", "Харьков"));
-        urlParameters.add(new BasicNameValuePair("station_till", "Харьков"));
-        urlParameters.add(new BasicNameValuePair("date_dep", "02.03.2017"));
-        urlParameters.add(new BasicNameValuePair("time_dep", "00:00"));
+        urlParameters.add(new BasicNameValuePair("station_from", "Slaviansk"));
+        urlParameters.add(new BasicNameValuePair("station_till", "Kharkiv"));
+        urlParameters.add(new BasicNameValuePair("date_dep", "03.03.2017"));
+        urlParameters.add(new BasicNameValuePair("time_dep", "12:00 am"));
 
-
+        UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(urlParameters);
+        urlEncodedFormEntity.setContentEncoding("utf-8");
+        urlEncodedFormEntity.setContentType("text/html; charset=utf-8");
+        System.out.println("ENCODING : "+urlEncodedFormEntity.getContentEncoding());
         post.setEntity(new UrlEncodedFormEntity(urlParameters));
-
 
         HttpResponse response = client.execute(post);
         System.out.println("\nSending 'POST' request to URL : " + url);
