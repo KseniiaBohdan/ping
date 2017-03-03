@@ -6,7 +6,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.BasicHttpParams;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -38,8 +37,21 @@ public class HttpURLConnectionExample {
 
         // add request header
         request.addHeader("User-Agent", USER_AGENT);
-        request.setParams(new BasicHttpParams().setParameter("station_from", "Харьков"));
-        request.setParams(new BasicHttpParams().setParameter("station_till", "Славянск"));
+        request.addHeader("Accept", "*/*");
+        request.addHeader("Accept-Encoding", "gzip, deflate");
+        request.addHeader("Accept-Language", "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4");
+        request.addHeader("Connection", "keep-alive");
+        request.addHeader("Content-Length", "162");
+        request.addHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.addHeader("Cookie", "_gv_sessid=qtfuit5p2515gik6bjcb60ulh2; HTTPSERVERID=server2; _uz_cart_personal_email=ks.13.bogdan%40gmail.com; full-version=1; _gv_lang=en; _ga=GA1.3.498215433.1488207379; _gat=1");
+        request.addHeader("GV-Ajax", "1");
+        request.addHeader("GV-Referer", "http://booking.uz.gov.ua/en/");
+        request.addHeader("GV-Screen", "1920x1080");
+        request.addHeader("GV-Token", "31f157dc25e2148711a1710d898841a1");
+        request.addHeader("Host", "booking.uz.gov.ua");
+        request.addHeader("Origin", "//booking.uz.gov.ua");
+        request.addHeader("Referer", "//booking.uz.gov.ua/en/");
+        request.addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");
 
         HttpResponse response = client.execute(request);
 
@@ -73,17 +85,24 @@ public class HttpURLConnectionExample {
         post.setHeader("User-Agent", USER_AGENT);
 
         List<NameValuePair> urlParameters = new ArrayList<NameValuePair>();
-        urlParameters.add(new BasicNameValuePair("sn", "C02G8416DRJM"));
-        urlParameters.add(new BasicNameValuePair("cn", ""));
-        urlParameters.add(new BasicNameValuePair("locale", ""));
-        urlParameters.add(new BasicNameValuePair("caller", ""));
-        urlParameters.add(new BasicNameValuePair("num", "12345"));
+//        urlParameters.add(new BasicNameValuePair("sn", "C02G8416DRJM"));
+//        urlParameters.add(new BasicNameValuePair("cn", ""));
+//        urlParameters.add(new BasicNameValuePair("locale", ""));
+//        urlParameters.add(new BasicNameValuePair("caller", ""));
+//        urlParameters.add(new BasicNameValuePair("num", "12345"));
+
+
+
         urlParameters.add(new BasicNameValuePair("station_id_from", "2204001"));
-        urlParameters.add(new BasicNameValuePair("station_id_till", "2204001"));
-        urlParameters.add(new BasicNameValuePair("station_from", "Slaviansk"));
-        urlParameters.add(new BasicNameValuePair("station_till", "Kharkiv"));
-        urlParameters.add(new BasicNameValuePair("date_dep", "03.03.2017"));
-        urlParameters.add(new BasicNameValuePair("time_dep", "12:00 am"));
+        urlParameters.add(new BasicNameValuePair("station_id_till", "2218000"));
+        urlParameters.add(new BasicNameValuePair("station_from", "Kharkiv"));
+        urlParameters.add(new BasicNameValuePair("station_till", "Lviv"));
+        urlParameters.add(new BasicNameValuePair("date_dep", "03.15.2017"));
+        urlParameters.add(new BasicNameValuePair("time_dep", "00:00"));
+        urlParameters.add(new BasicNameValuePair("time_dep_till", ""));
+        urlParameters.add(new BasicNameValuePair("another_ec", ""));
+        urlParameters.add(new BasicNameValuePair("search", ""));
+
 
         UrlEncodedFormEntity urlEncodedFormEntity = new UrlEncodedFormEntity(urlParameters);
         urlEncodedFormEntity.setContentEncoding("utf-8");
